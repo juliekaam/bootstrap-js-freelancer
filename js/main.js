@@ -16,7 +16,8 @@ Alcuni consigli
 - Ricordatevi che se non state bene attenti, Javascript vi fa le magie con i tipi :faccia_leggermente_sorridente:
 - Ricordatevi che il form ha un comportamento “strano” quando fate click sul bottone Send che è di tipo submit (type=submit). */
 
-let availableDiscountCodes = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
+let discountCodeAvalaible = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
+
 function priceToPay(e){
     e.preventDefault();
 
@@ -41,11 +42,32 @@ function priceToPay(e){
             //  Analisi
             finalPrice = 33.6 * hours;
     }
+// applicazione dello discount
 
+ let discountPresent = false; //verificare se c'è o no
+ for(let i = 0; i < discountCodeAvalaible.length; i++){
+     if(discountCodeAvalaible[i] == discountCode){
+         discountPresent = true;
+
+     }
    
+     }
+ 
 
-   
-    finalPrice = finalPrice.toFixed(2);
+ if((discountCode != "") && !discountPresent){
+     alert("Il codice sconto inserito non è valido");
 
-    document.getElementById("price").innerHTML = " Prezzo da pagare: " + finalPrice;
+    
+ }
+
+ if(discountPresent){
+     finalPrice = 0.75 * finalPrice;
+ }
+
+ finalPrice = finalPrice.toFixed(2);
+
+ document.getElementById("price").innerHTML = "Il prezzo finale è di: " + finalPrice;
 }
+
+   
+    
